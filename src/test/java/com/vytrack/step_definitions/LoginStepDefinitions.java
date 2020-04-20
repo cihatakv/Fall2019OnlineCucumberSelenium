@@ -16,7 +16,7 @@ public class LoginStepDefinitions {
     public void user_is_on_the_login_page() {
         System.out.println("Open login page");
 
-        String URL = ConfigurationReader.getProperty("qa3");
+        String URL = ConfigurationReader.getProperty("qa1");
         Driver.getDriver().get(URL);
     }
 
@@ -46,5 +46,17 @@ public class LoginStepDefinitions {
     public void user_logs_in_as_a_driver() {
         System.out.println("Login as a driver");
         loginPage.login("user19", "UserUser123");
+    }
+
+    @When("user enters {string} username and {string} password")
+    public void user_enters_username_and_password(String string, String string2) {
+        System.out.printf("Login with username %s and %s password", string, string2);
+        loginPage.login(string, string2);
+    }
+
+    @When("user navigates to {string} and {string}")
+    public void user_navigates_to_and(String tab, String module) {
+        System.out.printf("User clicks on the %s tab and navigates to %s module\n", tab, module);
+        loginPage.navigateTo(tab, module);
     }
 }

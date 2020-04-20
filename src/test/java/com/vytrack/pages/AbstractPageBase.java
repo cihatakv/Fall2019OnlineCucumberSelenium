@@ -1,4 +1,5 @@
 package com.vytrack.pages;
+
 import com.vytrack.utilities.BrowserUtilities;
 import com.vytrack.utilities.Driver;
 import org.openqa.selenium.By;
@@ -20,11 +21,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class AbstractPageBase {
     protected WebDriver driver = Driver.getDriver();
     protected WebDriverWait wait = new WebDriverWait(driver, 25);
+
     @FindBy(css = "#user-menu > a")
     protected WebElement currentUser;
 
+    @FindBy(css = "[class='btn-group pull-right'] > button")
+    protected WebElement saveAndClose;
+
     public AbstractPageBase() {
         PageFactory.initElements(driver, this);
+    }
+
+    public void clickOnSaveAndClose() {
+        wait.until(ExpectedConditions.elementToBeClickable(saveAndClose)).click();
     }
 
     public String getCurrentUserName() {
