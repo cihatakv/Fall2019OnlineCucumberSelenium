@@ -7,19 +7,16 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-
         glue = "com/vytrack/step_definitions", // path to package with step definition method
-        features = "src/test/resources/features/activities", // path to the folder/directory with feature files
+        features = "src/test/resources", // path to the folder/directory with feature files
         dryRun = false,
         strict = false,
-        tags = "@view_calendar_events",
+        tags = "not @smoke_test",
         plugin = {
-                "html:target/default-report",
-                "json:target/cucumber2.json"
+                "html:target/default-report-for-regression",
+                "json:target/cucumber_regression.json",
+                "rerun:target/rerun_regression.txt"
         }
-
 )
-
-public class ActivitiesTestRunner {
+public class RegressionRunner {
 }
-
